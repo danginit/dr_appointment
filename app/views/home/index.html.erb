@@ -1,0 +1,59 @@
+<h1>Dashboard</h1>
+<p id="notice"><%= notice %></p>
+<% if current_user.role == 'patient' %>
+<h1>Doctor Lists</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Specialist</th>
+      <th>Experience</th>
+      <th >Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.first_name %></td>
+        <td><%= doctor.last_name %></td>
+        <td><%= doctor.specialist %></td>
+        <td><%= doctor.experience %></td>
+        <td><%= link_to 'Book Appointment', new_appointment_path(:doctor_id => doctor), class: 'btn btn-outline-secondary' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% else  %>
+	
+	<h1>Patient Lists</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th colspan="3" style="text-align: center;" >Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.first_name %></td>
+        <td><%= patient.last_name %></td>
+        <td><%= link_to 'Show', appointment_path(patient), class: 'btn btn-outline-info' %></td>
+        <td><%= link_to 'Edit', edit_appointment_path(patient), class: 'btn btn-outline-warning' %></td>
+        <td><%= link_to 'Destroy', appointments_path(patient), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></td>
+      </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% end %>
