@@ -12,6 +12,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
+    # byebug
     @appointment = Appointment.new(doctor_id: params[:doctor_id])
   end
 

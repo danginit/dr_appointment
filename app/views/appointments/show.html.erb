@@ -2,12 +2,13 @@
 
 <p>
   <strong>Doctor:</strong>
-  <%= @appointment.doctor_id %>
+  <% curr_user = User.find(@appointment.doctor_id) %>
+  <%= curr_user.first_name + ' ' + curr_user.last_name %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @appointment.user_id %>
+  <%= current_user.first_name + ' ' + current_user.last_name %>
 </p>
 
 <p>
@@ -15,5 +16,5 @@
   <%= @appointment.appointment_date %>
 </p>
 
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
-<%= link_to 'Back', appointments_path %>
+<%= link_to 'Edit', edit_appointment_path(@appointment), class: 'btn btn-outline-dark' %> |
+<%= link_to 'Back', appointments_path, class: 'btn btn-outline-warning' %>
