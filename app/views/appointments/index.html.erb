@@ -5,8 +5,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Doctor</th>
-      <th>User</th>
+      <% if current_user.role == 'doctor' %>
+        <th>Patient</th>
+      <% else %>
+        <th>Doctor</th>
+      <% end %>
+      <% if current_user.role == 'patient' %>
+        <th>Specialist</th>
+      <% end %>
+      <% if current_user.role == 'doctor' %>
+        <th>Doctor</th>
+      <%  else %>
+        <th>Patient</th>
+      <% end %>
       <th>Appointment date</th>
       <th colspan="3" style="text-align: center;" >Actions</th>
     </tr>
@@ -18,7 +29,21 @@
       <% if current_user.id == appointment.user_id %>
         <% flag = 1 %>
         <tr>
-          <% curr_user = User.find(appointment.doctor_id) %>
+          <% curr_doct = User.find(appointment.doctor_id) %>
+          <td><%= curr_doct.first_name + ' ' + curr_doct.last_name %></td>
+          <td><%= curr_doct.specialist %></td>
+          <td><%= current_user.first_name + ' ' + current_user.last_name %></td>
+          <td><%= appointment.appointment_date %></td>
+          <td><%= link_to 'Show', appointment, class: 'btn btn-outline-info' %></td>
+          <td><%= link_to 'Edit', edit_appointment_path(appointment), class: 'btn btn-outline-warning' %></td>
+          <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></td>
+       </tr>
+      <% end %>
+
+      <% if current_user.id == appointment.doctor_id %>
+        <% flag = 1 %>
+        <tr>
+          <% curr_user = User.find(appointment.user_id) %>
           <td><%= curr_user.first_name + ' ' + curr_user.last_name %></td>
           <td><%= current_user.first_name + ' ' + current_user.last_name %></td>
           <td><%= appointment.appointment_date %></td>

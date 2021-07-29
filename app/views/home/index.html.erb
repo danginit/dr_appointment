@@ -46,9 +46,9 @@
       <tr>
         <td><%= patient.first_name %></td>
         <td><%= patient.last_name %></td>
-        <td><%= link_to 'Show', appointment_path(patient), class: 'btn btn-outline-info' %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(patient), class: 'btn btn-outline-warning' %></td>
-        <td><%= link_to 'Destroy', appointments_path(patient), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></td>
+        <td><%= link_to 'Show', home_path(patient), class: 'btn btn-outline-info' %></td>
+        <td><%= link_to 'Edit', edit_home_path(patient), class: 'btn btn-outline-warning' %></td>
+        <td><%= link_to 'Destroy', home_path(patient), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></td>
       </tr>
       </tr>
     <% end %>
